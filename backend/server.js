@@ -1,13 +1,11 @@
-const express = require('express');
+import express from 'express';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Sample GET endpoint
 app.get('/api/users', (req, res) => {
     res.json({
         users: [
@@ -17,7 +15,6 @@ app.get('/api/users', (req, res) => {
     });
 });
 
-// Sample POST endpoint
 app.post('/api/users', (req, res) => {
     const { name } = req.body;
     
@@ -34,7 +31,6 @@ app.post('/api/users', (req, res) => {
     });
 });
 
-// Error handling
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ error: 'Something went wrong!' });
